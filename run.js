@@ -40,7 +40,7 @@ var loadPhantomInstance = function () {
   };
 
   var phantomInstance = new Horseman(options);
-  
+
   phantomInstance.on('consoleMessage', function (msg) {
     // console.log('Phantom page log: ', msg);
   });
@@ -118,6 +118,19 @@ var main = function () {
       });
       break;
 
+    case 'hello_world':
+      prompt.get([{
+        name: 'url',
+        description: 'Enter a URL',
+        required: true,
+        conform: function (value) {
+          return validUrl.isWebUri(value);
+        }
+      }], function (err, result) {
+        performAction(phantomInstance, result.url);
+      });
+      break;
+
     default:
       phantomInstance.close();
       throw 'Invalid action specified. Supported actions include: ', supportedActions.join(', ');
@@ -130,7 +143,7 @@ var main = function () {
  (function () {
   // Generate an array of supported actions based on the files present in the 'actions' directory
   fs.readdir('./actions', function (err, files) {
-    
+
     files.forEach(function (filename) {
       supportedActions.push(filename.split('.')[0]);
     });
