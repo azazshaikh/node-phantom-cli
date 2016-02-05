@@ -14,10 +14,15 @@
       "name": "Andrew Forth"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sitepoint-editors/node-phantom-util/"
+  },
   "dependencies": {
     "commander": "2.6.0",
     "node-horseman": "2.7.0",
     "prompt": "0.2.14",
     "valid-url": "1.0.9"
-  }
+  },
+  "license": "MIT"
 }
